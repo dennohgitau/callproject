@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<html lang="en">
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Mofast</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mofast Orders</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="col-md-10">
+            <a href="{% url 'home' %}" class="btn btn-primary"style=" float: right;margin-bottom:20px ">Back</a>
+    </div>
+
+    <div class="container">
+        {% include 'partials/messages.html' %}
+
+        <div class="row">
+
+                <div class="col-md-4">
+                    <form method="get">
+                        {{my_filter.form}}
+
+                        <button class="btn btn-primary" type="submit" style="margin-top: 10px">
+                            Search</button>
+                    </form>
+                        <h2 style="padding-left: 500px">PERCENTAGES</h2>
+                    </div>
+                </div>
+        </div>
+        <div class="app-table">
+            <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Owner</th>
+                    <th>Mofast </th>
+                    <th>2W Trade </th>
+                    <th>Eglobal </th>
+                    <th>Unateus </th>
+                    <th>Halisi Labs </th>
+                    <th>Mainstream </th>
+                    <th>Clinton </th>
+                    <th>Ke-Warehouse  </th>
+                    <th>Adlat </th>
+                    <th>2BNE </th>
+                    <th>Vital </th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% if mofast.count %}
+            {% if trade.count %}
+            {% for mofast in page_obj %}
+                <tr>
+                    <td>{{mofast.date}}</td>
+                    <td>{{mofast.owner}}</td>
+                    <td>{{mofast.percentage|floatformat:"1"}}</td>
+                    <td>{{percentage_trade|floatformat:"1"}}</td>
+                    <td>{{percentage_eglobal|floatformat:"1"}}</td>
+                    <td>{{percentage_unateus|floatformat:"1"}}</td>
+                    <td>{{percentage_halisi|floatformat:"1"}}</td>
+                    <td>{{percentage_mainstream|floatformat:"1"}}</td>
+                    <td>{{percentage_clinton|floatformat:"1"}}</td>
+                    <td>{{percentage_warehouse|floatformat:"1"}}</td>
+                    <td>{{percentage_adlat|floatformat:"1"}}</td>
+                    <td>{{percentage_bne|floatformat:"1"}}</td>
+                    <td>{{percentage_vital|floatformat:"1"}}</td>
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        </div>
+
+        </div>
+        <div class="pagination-container">
+        <div class="">
+            Showing page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+        </div>
+        <ul class="pagination align-right float-right mr-auto">
+            {% if page_obj.has_previous %}
+            <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a> </li>
+            <li class="page-item " ><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a> </li>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a> </li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}&raquo;</a> </li>
+            {% endif %}
+
+        </ul>
+
+        {% endif %}
+        {% endif %}
+
+    </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+ <div id="container" style="width: 75%;">
+    <canvas id="percentage_chart" data-url="{% url 'percentage_chart' %}"></canvas>
+  </div>
+
+<script>
+
+    $(function () {
+
+      var $percentageChart = $("#percentage_chart");
+      $.ajax({
+        url: $percentageChart.data("url"),
+        success: function (data) {
+
+          var ctx = $percentageChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Percentage',
+                backgroundColor: 'blue',
+                data: data.data
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Percentage Bar Chart'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+  </script>
+
+
+
+{% endblock %}

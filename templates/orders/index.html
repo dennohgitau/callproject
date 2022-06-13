@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<html lang="en">
+{% block content %}
+<div class="container mt-4">
+    <!--<div class="col-md-2">
+            <a href="{% url 'get_percentage_per_agent' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px
+                                    ;">View</a>
+        </div>
+     -->
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container">
+            <h3>Please Select the orders of the client you want to update</h3>
+        </div>
+
+
+    </div>
+    <div class="container" style="width: 1000px;display: flex;justify-content: center;">
+       <div class="col-md-2">
+            <a href="{% url 'add_mofast' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Mofast</a>
+       </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add_2wtrade' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px;">Add 2W Trade</a>
+        </div>
+
+         <div class="col-md-2">
+            <a href="{% url 'add_adlat' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Adlat</a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add_2b' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add 2BNE</a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add_vital' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Vital</a>
+        </div>
+    </div>
+    <div class="container" style="width: 1000px;display: flex;justify-content: center; margin-top:30px">
+        <div class="col-md-2">
+            <a href="{% url 'add_clinton' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px ">Add Clinton Stores</a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add_ke' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px ">Add Ke-Warehouse</a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add_eglobal' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Eglobal-MFT</a>
+        </div>
+
+         <div class="col-md-2">
+            <a href="{% url 'add_unateus' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Unateus</a>
+        </div>
+
+         <div class="col-md-2">
+            <a href="{% url 'add_halisi' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Halisi Labs</a>
+        </div>
+
+         <div class="col-md-2">
+            <a href="{% url 'add_mainstream' %}" class="btn btn-outline-primary btn-lg" style="margin-top:20px; margin-left:20px">Add Mainstream</a>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
